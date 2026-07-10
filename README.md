@@ -33,6 +33,8 @@ The current MVP keeps the stack intentionally small and reversible while still s
 
 The project ships with a committed `.env.example` template only. Do not commit real secrets.
 
+Deployment and rollback instructions for the canonical repo live in [`docs/vercel-deployment.md`](docs/vercel-deployment.md).
+
 ## MVP surface in this repository
 
 The app currently includes:
