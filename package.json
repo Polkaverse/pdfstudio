@@ -6,10 +6,12 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "test:workflow": "tsx scripts/verify-summary-workflow.ts"
   },
   "dependencies": {
     "next": "16.2.10",
+    "pdf-parse": "^1.1.1",
     "react": "19.2.7",
     "react-dom": "19.2.7"
   },
@@ -19,6 +21,7 @@
     "@types/react-dom": "19.2.3",
     "eslint": "9.39.4",
     "eslint-config-next": "16.2.10",
+    "tsx": "^4.20.6",
     "typescript": "5.9.3"
   },
   "engines": {

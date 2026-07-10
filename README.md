@@ -37,8 +37,30 @@ The project ships with a committed `.env.example` template only. Do not commit r
 
 The app currently includes:
 
-- a task-first landing experience for quick PDF, OCR, summary, translation, template, and signing tasks
-- upload, progress, and retention messaging shaped by the BharatPDF UX and security baselines
-- OCR review, editable output presentation, and template/signature flow previews
-- explicit trust copy for quarantine, worker isolation, signed downloads, and short-lived retention
+- a task-first landing experience that exposes one live workflow and clearly marks the rest as deferred
+- a functional upload pipeline for text-based PDFs, `.txt`, and `.md` files
+- local document storage under `.bharatpdf/uploads` with document ids and object-key boundaries
+- embedded-text extraction plus heuristic summary generation without external service dependencies
+- explicit deferred handling for scanned/image PDFs that still require OCR
 - local setup instructions, environment template, ignore rules, and CI lint validation
+
+## First functional workflow
+
+The first real slice is `Summarize`:
+
+- upload a text-based PDF, `.txt`, or `.md`
+- store the original file locally inside `.bharatpdf/uploads/<documentId>/`
+- extract embedded text on the server
+- return summary bullets, preview text, parser metadata, and retention timestamps
+
+If a PDF has no embedded text layer, the workflow returns a deferred OCR-needed state instead of faking completion.
+
+## Deferred capabilities
+
+These remain intentionally unfinished in this repo:
+
+- scanned/image OCR
+- translation based on OCR output
+- signing flows
+- template generation
+- remote object storage, queues, and external AI integrations
