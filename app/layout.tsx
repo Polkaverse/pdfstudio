@@ -23,7 +23,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "PDF Studio - Free PDF Tools, Hindi OCR, eSign & Document Templates",
     description: "Secure, local, and legally-binding PDF utilities tailored for MSMEs, students, and professionals.",
-    url: "https://pdf-studio-pankajchaudhary.vercel.app",
+    url: "https://pdf-studio-in.vercel.app",
     siteName: "PDF Studio",
     locale: "en_IN",
     type: "website",
