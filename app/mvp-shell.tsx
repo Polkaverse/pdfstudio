@@ -578,23 +578,33 @@ export function MvpShell() {
       const grayLine = rgb(0.8, 0.8, 0.8);
 
       // Text wrapping helper
+      // Text wrapping helper
       const wrapText = (text: string, maxWidth: number, fontSize: number, useBold: boolean = false) => {
-        const words = text.split(" ");
+        const paragraphs = text.split("\n");
         const lines: string[] = [];
-        let currentLine = "";
         const targetFont = useBold ? boldFont : font;
 
-        for (const word of words) {
-          const testLine = currentLine ? `${currentLine} ${word}` : word;
-          const width = targetFont.widthOfTextAtSize(testLine, fontSize);
-          if (width > maxWidth) {
+        for (const paragraph of paragraphs) {
+          if (paragraph.trim() === "") {
+            lines.push("");
+            continue;
+          }
+          const words = paragraph.split(/\s+/).filter(Boolean);
+          let currentLine = "";
+          for (const word of words) {
+            const testLine = currentLine ? `${currentLine} ${word}` : word;
+            const width = targetFont.widthOfTextAtSize(testLine, fontSize);
+            if (width > maxWidth) {
+              lines.push(currentLine);
+              currentLine = word;
+            } else {
+              currentLine = testLine;
+            }
+          }
+          if (currentLine) {
             lines.push(currentLine);
-            currentLine = word;
-          } else {
-            currentLine = testLine;
           }
         }
-        if (currentLine) lines.push(currentLine);
         return lines;
       };
 
@@ -707,6 +717,10 @@ THE TENANT: Shri/Smt. ${f.tenantName}, hereinafter referred to as the "SECOND PA
         let yPos = 730;
         const preambleLines = wrapText(preamble, 515, 10);
         for (const line of preambleLines) {
+          if (line === "") {
+            yPos -= 10;
+            continue;
+          }
           page.drawText(line, { x: 40, y: yPos, size: 10, font, color: textColor });
           yPos -= 18;
         }
