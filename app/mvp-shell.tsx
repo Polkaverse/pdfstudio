@@ -74,7 +74,7 @@ export function MvpShell() {
   // Template Form Fields
   const [templateFields, setTemplateFields] = useState({
     // Invoice
-    shopName: "Bharat Electronics",
+    shopName: "Studio Electronics",
     gstin: "27AAAAA1111A1Z1",
     customerName: "Rajesh Kumar",
     itemName: "Smart LED TV",
