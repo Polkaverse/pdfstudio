@@ -6,13 +6,13 @@ BharatPDF AI is a task-first PDF utility for Indian mobile-web users. The produc
 
 Interim technical owner: VOI Founding Full Stack Engineer (`FullStackEngineer`) via `VOI-40`.
 
-## Initial stack
+## Current stack
 
 - Next.js 16 with App Router
 - React 19 with TypeScript
 - ESLint for a cheap CI validation gate
 
-This baseline is intentionally small and reversible so the repository can become the engineering source of truth before heavier product decisions land.
+The current MVP keeps the stack intentionally small and reversible while still shipping the main user-facing flows in a runnable form.
 
 ## Local setup
 
@@ -33,12 +33,12 @@ This baseline is intentionally small and reversible so the repository can become
 
 The project ships with a committed `.env.example` template only. Do not commit real secrets.
 
-## Repository baseline scope
+## MVP surface in this repository
 
-This first commit adds:
+The app currently includes:
 
-- a minimal web app shell
-- local setup instructions
-- environment variable template
-- ignore rules
-- a GitHub Actions workflow that runs `npm run lint`
+- a task-first landing experience for quick PDF, OCR, summary, translation, template, and signing tasks
+- upload, progress, and retention messaging shaped by the BharatPDF UX and security baselines
+- OCR review, editable output presentation, and template/signature flow previews
+- explicit trust copy for quarantine, worker isolation, signed downloads, and short-lived retention
+- local setup instructions, environment template, ignore rules, and CI lint validation
