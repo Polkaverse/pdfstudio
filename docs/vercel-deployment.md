@@ -36,7 +36,7 @@ npm run build
 Expected result on the current MVP:
 
 - `/` prerenders successfully
-- `/api/workflows/summary` builds as a dynamic route
+- `/api/workflows/ai` builds as a dynamic route
 
 ## Vercel project wiring
 
