@@ -471,24 +471,44 @@ export function MvpShell() {
     setError(null);
     setOcrText("");
     setProcessing(true);
-    setOcrProgress("Sending document to secure backend OCR engine...");
     try {
-      const formData = new FormData();
-      formData.append("file", ocrFile);
-      formData.append("lang", ocrLang);
+      const isPdf = ocrFile.name.toLowerCase().endsWith(".pdf");
+      if (isPdf) {
+        setOcrProgress("Parsing PDF document on secure server...");
+        const formData = new FormData();
+        formData.append("file", ocrFile);
+        formData.append("lang", ocrLang);
 
-      const res = await fetch("/api/workflows/ocr", {
-        method: "POST",
-        body: formData,
-      });
+        const res = await fetch("/api/workflows/ocr", {
+          method: "POST",
+          body: formData,
+        });
 
-      const data = await res.json();
-      if (!res.ok) {
-        throw new Error(data.error || "OCR request failed.");
+        const data = await res.json();
+        if (!res.ok) {
+          throw new Error(data.error || "OCR request failed.");
+        }
+        setOcrText(data.text || "No text could be recognized.");
+        setSuccess("OCR extraction complete!");
+      } else {
+        // Image OCR: Run entirely client-side for maximum reliability and live progress tracking!
+        setOcrProgress("Initializing client-side OCR engine...");
+        const result = await Tesseract.recognize(
+          ocrFile,
+          ocrLang,
+          {
+            logger: (m) => {
+              if (m.status === "recognizing text") {
+                setOcrProgress(`Recognizing Text: ${Math.round(m.progress * 100)}%`);
+              } else {
+                setOcrProgress(`${m.status.charAt(0).toUpperCase() + m.status.slice(1).replace(/_/g, " ")}...`);
+              }
+            }
+          }
+        );
+        setOcrText(result.data.text || "No text could be recognized.");
+        setSuccess("OCR extraction complete!");
       }
-
-      setOcrText(data.text || "No text could be recognized.");
-      setSuccess("OCR extraction complete!");
     } catch (err: any) {
       setError("Failed to run OCR: " + err.message);
     } finally {

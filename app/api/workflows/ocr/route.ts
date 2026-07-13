@@ -35,7 +35,9 @@ export async function POST(request: Request) {
       }
     } else {
       // Process image files directly using server-side Tesseract.js
-      const { data: { text } } = await Tesseract.recognize(bytes, lang);
+      const { data: { text } } = await Tesseract.recognize(bytes, lang, {
+        cachePath: "/tmp"
+      });
       extractedText = text;
     }
 
