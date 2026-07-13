@@ -2076,32 +2076,7 @@ THE TENANT: Shri/Smt. ${f.tenantName}, hereinafter referred to as the "SECOND PA
         </div>
       </div>
 
-      {/* Trust & Architecture Showcase */}
-      <section className="content-grid">
-        <article className="surface-card">
-          <div className="card-header">
-            <div>
-              <p className="section-kicker">Indian MSME Digitalization</p>
-              <h2>Empowering MSME document automation</h2>
-              <p style={{ fontSize: "0.95rem", color: "var(--muted)", marginTop: "0.5rem" }}>
-                Generate rent agreements, GST compliant billing, and letters natively in minutes. Share the documents instantly via secure download or dynamic WhatsApp custom dispatch formats.
-              </p>
-            </div>
-          </div>
-        </article>
 
-        <article className="surface-card">
-          <div className="card-header">
-            <div>
-              <p className="section-kicker">Data Sovereignty First</p>
-              <h2>Zero-Retention Local Workflows</h2>
-              <p style={{ fontSize: "0.95rem", color: "var(--muted)", marginTop: "0.5rem" }}>
-                Privacy is guaranteed by executing PDF transformations, page rotations, text extractions, and sign layouts directly inside your local browser storage using WebAssembly structures.
-              </p>
-            </div>
-          </div>
-        </article>
-      </section>
     </main>
   );
 }
